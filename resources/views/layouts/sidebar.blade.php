@@ -54,6 +54,12 @@
                 </x-nav-link>
 
                 @can('user view')
+                    <x-nav-link href="{{ route('company.index') }}" :active="request()->is('dashboard/company*')">
+                        Companies
+                    </x-nav-link>
+                @endcan
+            
+                @can('user view')
                     <x-nav-link href="{{ route('users.index') }}" :active="request()->is('dashboard/users*')">
                         Users
                     </x-nav-link>
@@ -70,6 +76,9 @@
                         Permissions
                     </x-nav-link>
                 @endcan
+
+
+
             </div>
         </div>
 

@@ -13,7 +13,7 @@ use App\Http\Controllers\SalesEnquiryController;
 use App\Http\Controllers\SOAController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\CompanyMasterController;
+use App\Http\Controllers\CompanyController;
 use App\Livewire\Budget\BudgetForm;
 use Illuminate\Support\Facades\Route;
 
@@ -150,13 +150,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/dashboard/material_requests/{id}/deliver', [MaterialRequestController::class, 'markAsDelivered'])->name('material_requests.deliver');
 });
 
-
-Route::middleware('auth')->group(function () {  
-    Route::get('/dashboard/company/add', [CompanyMasterController::class, 'create'])->name('company.create');
-    Route::post('/dashboard/company/add', [CompanyMasterController::class, 'store'])->name('company.store');
-     Route::get('/dashboard/company', [CompanyMasterController::class, 'index'])->name('company.index');
-    
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard/company', [CompanyController::class, 'index'])->name('company.index');
+    Route::get('/dashboard/company/{id}/view', [CompanyController::class, 'show'])->name('company.view');
+    Route::get('/dashboard/company/add', [CompanyController::class, 'create'])->name('company.create');
+    Route::get('/dashboard/company/{id}/edit', [CompanyController::class, 'edit'])->name('company.edit');
+    Route::get('/dashboard/company/{id}/delete', [CompanyController::class, 'delete'])->name('company.delete');
+    Route::post('/dashboard/company/{id}/destroy', [CompanyController::class, 'destroy'])->name('company.destroy');
 });
-
 
 require __DIR__ . '/auth.php';
