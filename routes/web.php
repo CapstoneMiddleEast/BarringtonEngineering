@@ -14,6 +14,7 @@ use App\Http\Controllers\SOAController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\DepartmentController;
 use App\Livewire\Budget\BudgetForm;
 use Illuminate\Support\Facades\Route;
 
@@ -157,6 +158,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/company/{id}/edit', [CompanyController::class, 'edit'])->name('company.edit');
     Route::get('/dashboard/company/{id}/delete', [CompanyController::class, 'delete'])->name('company.delete');
     Route::post('/dashboard/company/{id}/destroy', [CompanyController::class, 'destroy'])->name('company.destroy');
+});
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard/department', [DepartmentController::class, 'index'])->name('department.index');
+    Route::get('/dashboard/department/add', [DepartmentController::class, 'create'])->name('department.create');
+    Route::get('/dashboard/department/{id}/edit', [DepartmentController::class, 'edit'])->name('department.edit');
+    Route::get('/dashboard/department/{id}/delete', [DepartmentController::class, 'delete'])->name('department.delete');
+    Route::post('/dashboard/department/{id}/destroy', [DepartmentController::class, 'destroy'])->name('department.destroy');
 });
 
 require __DIR__ . '/auth.php';

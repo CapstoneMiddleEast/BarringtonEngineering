@@ -53,12 +53,18 @@
                     All employees
                 </x-nav-link>
 
-                @can('user view')
+                @can('company view')
                     <x-nav-link href="{{ route('company.index') }}" :active="request()->is('dashboard/company*')">
                         Companies
                     </x-nav-link>
                 @endcan
-            
+
+                @can('view department')
+                    <x-nav-link href="{{ route('department.index') }}" :active="request()->is('dashboard/department*')">
+                        Department
+                    </x-nav-link>
+                @endcan
+
                 @can('user view')
                     <x-nav-link href="{{ route('users.index') }}" :active="request()->is('dashboard/users*')">
                         Users
